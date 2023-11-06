@@ -6,7 +6,7 @@ titleTemplate: 前端监控
 
 hero:
   name: VirtualMonitor
-  text: 为前端项目提供完善的监控手段
+  text: Make your project completely naked
   image:
     src: https://gitee.com/ye_chao111/image-store/raw/master/logos/slogin.svg
     alt: VirtualMonitor
