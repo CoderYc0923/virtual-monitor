@@ -1,4 +1,5 @@
-import { AnyFun, AnyObj, InternalOptions, VoidFun } from "../types";
+import { ObserverValue } from "../observer/types";
+import { AnyFun, AnyObj, InitOptions, InternalOptions, VoidFun } from "../types";
 import { deepAssign } from "../utils";
 
 //全局参数
@@ -40,14 +41,14 @@ export class Options implements InternalOptions {
   afterSendData: VoidFun[] = [];
   localizationOverFlow: VoidFun = () => {};
 
-  constructor(initOptions: InternalOptions) {
+  constructor(initOptions: InitOptions) {
     const _options = this.#transtionOptions(initOptions);
     _options.ignoreRequest.push(new RegExp(_options.dns));
     deepAssign<Options>(this, _options);
   }
 
   //对入参进行数据转换
-  #transtionOptions(options: InternalOptions): Options {
+  #transtionOptions(options: InitOptions): Options {
     const _options = deepAssign<Options>({}, this, options);
     const { beforePushEventList, beforeSendData, afterSendData } = options;
     const { pv, performance, error, event } = _options;
@@ -67,5 +68,9 @@ export class Options implements InternalOptions {
       _options.beforePushEventList = [beforePushEventList];
     if (beforeSendData) _options.beforeSendData = [beforeSendData];
     if (afterSendData) _options.afterSendData = [afterSendData];
+
+    return _options
   }
 }
+
+export let options: ObserverValue<InternalOptions>

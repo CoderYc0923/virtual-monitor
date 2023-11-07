@@ -6,7 +6,7 @@ import { getSessionId } from '../utils/session'
 import { options } from './options'
 import { getIPs } from '../utils/getIps'
 import { AnyObj } from '../types'
-import { computed } from '../observer'
+import { useComputed } from '../observer'
 import type { ObserverValue } from '../observer/types'
 
 interface Device {
@@ -41,9 +41,9 @@ export class BaseInfo {
     constructor() {
         //当前应用Id
         this.pageId = uuid();
-        this.initSdkUserUuid().then(() => {
+        this.#initSdkUserUuid().then(() => {
             this.#initDevice()
-            this.initBase()
+            this.#initBase()
         })
     }
 
@@ -73,7 +73,7 @@ export class BaseInfo {
         //浏览器与后端之间协定的ID
         const sessionId = getSessionId()
         let ip = ''
-        this.base = computed<Base>(() => ({
+        this.base = useComputed<Base>(() => ({
             ...this.#device!,
             userUuid: options.value.userUuid,
             sdkUuid: this.#sdkUserUuid,
@@ -85,7 +85,7 @@ export class BaseInfo {
             sdkVersion: SDK_VERSION,
             ip
         }))
-        getFips().then((res: any) => {
+        getIPs().then((res: any) => {
             this.base!.value.ip = res[0]
             ip = res[0]
         })
