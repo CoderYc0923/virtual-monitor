@@ -35,19 +35,19 @@ interface Base extends Device {
 export class BaseInfo {
     public base: ObserverValue<Base> | undefined
     public pageId: string
-    #sdkUserUuid = ''
-    #device: Device | undefined
+    private sdkUserUuid = ''
+    private device: Device | undefined
 
     constructor() {
         //当前应用Id
         this.pageId = uuid();
-        this.#initSdkUserUuid().then(() => {
-            this.#initDevice()
-            this.#initBase()
+        this.initSdkUserUuid().then(() => {
+            this.initDevice()
+            this.initBase()
         })
     }
 
-    #initDevice() {
+    private initDevice() {
         const { screen } = getGlobal()
         const { clientHeight, clientWidth } = document.documentElement
         const { width, height, colorDepth, pixelDepth } = screen
@@ -56,7 +56,7 @@ export class BaseInfo {
             deviceId = `t_${uuid()}`
             document.cookie = `${DEVICE_KEY}=${deviceId};path=/`
         }
-        this.#device = {
+        this.device = {
             clientHeight,//网页可见区高度
             clientWidth,//网页可见宽度
             colorDepth,// 显示屏幕调色板的比特深度
@@ -69,14 +69,14 @@ export class BaseInfo {
         }
     }
 
-    #initBase() {
+    private initBase() {
         //浏览器与后端之间协定的ID
         const sessionId = getSessionId()
         let ip = ''
         this.base = useComputed<Base>(() => ({
-            ...this.#device!,
+            ...this.device!,
             userUuid: options.value.userUuid,
-            sdkUuid: this.#sdkUserUuid,
+            sdkUuid: this.sdkUserUuid,
             extraInfo: options.value.extraInfo,
             appName: options.value.appName,
             appCode: options.value.appCode,
@@ -91,10 +91,10 @@ export class BaseInfo {
         })
     }
 
-    #initSdkUserUuid() {
+    private initSdkUserUuid() {
         return load({}).then((fp: any) => fp.get).then((res: any) => {
             const visitorId = res.visitorId
-            this.#sdkUserUuid = visitorId
+            this.sdkUserUuid = visitorId
             options.value.sdkUserUuid = visitorId
         })
     }

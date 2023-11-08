@@ -42,13 +42,13 @@ export class Options implements InternalOptions {
   localizationOverFlow: VoidFun = () => {};
 
   constructor(initOptions: InitOptions) {
-    const _options = this.#transtionOptions(initOptions);
+    const _options = this.transtionOptions(initOptions);
     _options.ignoreRequest.push(new RegExp(_options.dns));
     deepAssign<Options>(this, _options);
   }
 
   //对入参进行数据转换
-  #transtionOptions(options: InitOptions): Options {
+  private transtionOptions(options: InitOptions): Options {
     const _options = deepAssign<Options>({}, this, options);
     const { beforePushEventList, beforeSendData, afterSendData } = options;
     const { pv, performance, error, event } = _options;

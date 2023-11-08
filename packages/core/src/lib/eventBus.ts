@@ -12,27 +12,27 @@ type Handlers = {
 }
 
 export class EventBus {
-    #handlers: Handlers
+    private handlers: Handlers
     constructor() {
-        this.#handlers = {}
+        this.handlers = {}
     }
 
     //为目标类型事件添加回调
     addEvent(handler: EventHandler) {
-        !this.#handlers[handler.type] && (this.#handlers[handler.type] = [])
-        const funIndex = this.#_getCallbackIndex(handler)
-        if (funIndex === -1) this.#handlers[handler.type]?.push(handler.callback)
+        !this.handlers[handler.type] && (this.handlers[handler.type] = [])
+        const funIndex = this._getCallbackIndex(handler)
+        if (funIndex === -1) this.handlers[handler.type]?.push(handler.callback)
     }
 
     //为目标类型事件删除回调
     delEvent(handler: EventHandler, newCallback: AnyFun) {
-        const funIndex = this.#_getCallbackIndex(handler)
-        if (funIndex === -1) this.#handlers[handler.type]?.splice(funIndex, 1, newCallback)
+        const funIndex = this._getCallbackIndex(handler)
+        if (funIndex === -1) this.handlers[handler.type]?.splice(funIndex, 1, newCallback)
     }
 
     //获取目标类型事件的所有回调
     getEvent(type: EVENTTYPES): AnyFun[] {
-        return this.#handlers[type] || []
+        return this.handlers[type] || []
     }
 
     //执行目标类型事件所有回调
@@ -44,9 +44,9 @@ export class EventBus {
     }
 
     //获取函数在callback列表中的位置
-    #_getCallbackIndex(handler: EventHandler): number {
-        if (this.#handlers[handler.type]) {
-            const callbackList = this.#handlers[handler.type]
+    private _getCallbackIndex(handler: EventHandler): number {
+        if (this.handlers[handler.type]) {
+            const callbackList = this.handlers[handler.type]
             if (callbackList) return callbackList.findIndex(fun => fun === handler.callback)
             else return -1
         } {
