@@ -110,3 +110,28 @@ export function deepAssign<T>(target: AnyObj, ...sources: AnyObj[]) {
 export function typeofAny(target: any): string {
   return Object.prototype.toString.call(target).slice(8, -1).toLowerCase()
 }
+
+//判断对象中是否包含该属性
+export function isValidKey(key: string | number | symbol, object: object): key is keyof typeof object {
+  return key in object
+}
+
+
+//节流
+export function throttle(func: AnyFun, wait: number, runFirst = false) {
+  let timer: NodeJS.Timeout | null = null
+  let lastArgs: any[]
+
+  return function(this: any, ...args: any[]) {
+    lastArgs = args
+    if (timer === null) {
+      if (runFirst) {
+        func.apply(this, lastArgs)
+      }
+      timer = setTimeout(() => {
+        timer = null
+        func.apply(this, lastArgs)
+      }, wait)
+    }
+  }
+}

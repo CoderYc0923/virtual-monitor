@@ -54,3 +54,7 @@ export class EventBus {
         }
     }
 }
+
+const eventBus = _support.eventBus || (_support.eventBus = new EventBus())
+
+export { eventBus }
