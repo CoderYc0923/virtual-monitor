@@ -105,3 +105,8 @@ export function deepAssign<T>(target: AnyObj, ...sources: AnyObj[]) {
   });
   return target as T
 }
+
+//判断入参类型
+export function typeofAny(target: any): string {
+  return Object.prototype.toString.call(target).slice(8, -1).toLowerCase()
+}

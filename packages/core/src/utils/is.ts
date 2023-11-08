@@ -48,3 +48,10 @@ export function isError(error: Error): boolean {
             return false
     }
 }
+
+//判断值是否为空
+export function isEmpty(data: any): boolean {
+    return (
+        (isString(data) && data.trim() === '') || data === undefined || data === null
+    )
+}
