@@ -49,7 +49,7 @@ export type InternalOptions = {
   cacheWatingTime: number; // 上报数据最大等待时间
   ignoreErrors: Array<string | RegExp>; // 错误类型事件过滤
   ignoreRequest: Array<string | RegExp>; // 请求类型事件过滤
-  scopeError: boolean; // 当某个时间段报错时，会将此类错误转为特殊错误类型，会新增错误持续时间范围
+  scopeError: boolean; // 是否开启错误持续监听（开启后会以时间段为范围监听某个错误持续时间）
   localization: boolean; // 是否本地化：不再主动发送事件，事件都存储在本地，需手动调用
   sendTypeByXmlBody?: boolean; // 是否强制指定发送形式为xml，body请求方式
   // whiteScreen: boolean // 开启白屏检测
@@ -57,7 +57,7 @@ export type InternalOptions = {
   beforeSendData: AnyFun[]; // 数据上报前置钩子
   afterSendData: AnyFun[]; // 数据上报后置钩子
   localizationOverFlow: VoidFun; // 本地化存储溢出后的回调
-  recordScreen: boolean; // 是否启动录屏
+  // recordScreen: boolean; // 是否启动录屏
 };
 
 /**
@@ -80,14 +80,14 @@ export type InitOptions = {
   cacheWatingTime?: number; // 上报数据最大等待时间
   ignoreErrors?: Array<string | RegExp>; // 错误类型事件过滤
   ignoreRequest?: Array<string | RegExp>; // 请求类型事件过滤
-  scopeError?: boolean; // 当某个时间段报错时，会将此类错误转为特殊错误类型，会新增错误持续时间范围
+  scopeError?: boolean; // 是否开启错误持续监听（开启后会以时间段为范围监听某个错误持续时间）
   localization?: boolean; // 是否本地化：不再主动发送事件，事件都存储在本地，需手动调用
   sendTypeByXmlBody?: boolean; // 是否强制指定发送形式为xml，body请求方式
   // whiteScreen?: boolean // 开启白屏检测
   beforePushEventList?: (data: any) => any; // 添加到行为列表前置钩子
   beforeSendData?: (data: any) => any; // 数据上报前置钩子
   afterSendData?: (data: any) => void; // 数据上报后置钩子
-  recordScreen?: boolean; // 是否启动录屏
+  // recordScreen?: boolean; // 是否启动录屏
 };
 
 export type ElementOrList = Element | Element[];

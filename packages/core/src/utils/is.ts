@@ -63,3 +63,8 @@ export function isObjectOverSizeLimit(object: object, limitSize: number) {
     const sizeKB = sizeBytes / 1024
     return sizeKB > limitSize
 }
+
+//判断是否为promise-reject的错误类型
+export function isPromiseRejectedResult(event: ErrorEvent | PromiseRejectedResult): event is PromiseRejectedResult {
+    return (event as PromiseRejectedResult).reason !== undefined
+}

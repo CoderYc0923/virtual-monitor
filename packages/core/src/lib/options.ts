@@ -2,7 +2,6 @@ import { useRef } from "../observer";
 import { ObserverValue } from "../observer/types";
 import {
   AnyFun,
-  AnyObj,
   InitOptions,
   InternalOptions,
   VoidFun,
@@ -36,7 +35,7 @@ export class Options implements InternalOptions {
   event = {
     core: false, // 是否采集点击事件
   };
-  recordScreen = false; //是否启动录屏
+  // recordScreen = false; //是否启动录屏
   extraInfo = {};
   tracesSampleRate = 1;
   cacheMaxLength = 5;
@@ -119,7 +118,7 @@ function _vaildateInitOption(options: InitOptions) {
     appVersion,
     userUuid,
     debug,
-    recordScreen,
+    // recordScreen,
     pv,
     performance,
     error,
@@ -175,7 +174,7 @@ function _vaildateInitOption(options: InitOptions) {
     validateOption(appVersion, "appVersion", "string"),
     validateOption(userUuid, "userUuid", "string"),
     validateOption(debug, "debug", "boolean"),
-    validateOption(recordScreen, "recordScreen", "boolean"),
+    // validateOption(recordScreen, "recordScreen", "boolean"),
 
     validateOption(extraInfo, "extraInfo", "object"),
     validateOption(tracesSampleRate, "tracesSampleRate", "number"),

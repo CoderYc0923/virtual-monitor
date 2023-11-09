@@ -138,6 +138,21 @@ export function throttle(func: AnyFun, wait: number, runFirst = false) {
   };
 }
 
+//防抖
+export function debounce(func: AnyFun, wait: number, runFirst = false) {
+  let timer: NodeJS.Timeout | null = null;
+  return function (this: any, ...args: any[]) {
+    if (runFirst) {
+      func.call(this, ...args);
+      runFirst = false;
+    }
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.call(this, ...args);
+    }, wait);
+  };
+}
+
 const arrayMap =
   Array.prototype.map ||
   function polyfillMap(this: any, fn) {
@@ -153,50 +168,102 @@ export function useMap(arr: any[], fn: AnyFun) {
   return arrayMap.call(arr, fn);
 }
 
+const arrayFilter =
+  Array.prototype.filter ||
+  function filterPolyfill(this: any, fn: AnyFun) {
+    const result = [];
+    for (let i = 0; i < this.length; i += 1) {
+      if (fn(this[i], i, this)) {
+        result.push(this[i]);
+      }
+    }
+    return result;
+  };
+
+//filter
+export function useFilter(arr: any[], fn: AnyFun) {
+  return arrayFilter.call(arr, fn);
+}
+
 //批量执行方法
-export function executeFunctions(funcList: AnyFun[], argsThroughAll: boolean, args: any) {
-  if (funcList.length === 0) return args
-  let res: any = undefined
-  for (let i =0; i< funcList.length; i++) {
-    const func = funcList[i]
-    if (i === 0 || argsThroughAll) res = func(args)
-    else res = func(res)
+export function executeFunctions(
+  funcList: AnyFun[],
+  argsThroughAll: boolean,
+  args: any
+) {
+  if (funcList.length === 0) return args;
+  let res: any = undefined;
+  for (let i = 0; i < funcList.length; i++) {
+    const func = funcList[i];
+    if (i === 0 || argsThroughAll) res = func(args);
+    else res = func(res);
   }
-  return res
+  return res;
 }
 
 //通过sendBeacon发送埋点数据
 export function sendByBeacon(url: string, data: any) {
-  return navigator.sendBeacon(url, JSON.stringify(data))
+  return navigator.sendBeacon(url, JSON.stringify(data));
 }
 
-export const sendReaconImageList:any[] = []
+export const sendReaconImageList: any[] = [];
 
 //通过image发送埋点数据
 export function sendByImage(url: string, data: string): Promise<void> {
-  return new Promise(resolve => {
-    const img = new Image()
-    img.src = `${url}?v=${encodeURIComponent(JSON.stringify(data))}`
-    sendReaconImageList.push(img)
-    img.onload = () => resolve()
-    img.onerror = () => resolve()
-  })
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = `${url}?v=${encodeURIComponent(JSON.stringify(data))}`;
+    sendReaconImageList.push(img);
+    img.onload = () => resolve();
+    img.onerror = () => resolve();
+  });
 }
 
 //通过xml发送埋点数据
 export function sendByXML(url: string, data: string): Promise<void> {
-  return new Promise(resolve => {
-    const xhr = new XMLHttpRequest()
-    xhr.open('post', url)
-    xhr.setRequestHeader('content-type', 'application/json')
-    xhr.send(JSON.stringify(data))
+  return new Promise((resolve) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("post", url);
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.send(JSON.stringify(data));
     xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) resolve()
-    }
-  })
+      if (xhr.readyState === 4) resolve();
+    };
+  });
 }
 
-const wait = 17
+const wait = 17;
 
 //异步执行
-export const useNextTick = window.requestIdleCallback || window.requestAnimationFrame || (callback => setTimeout(callback, wait))
+export const useNextTick =
+  window.requestIdleCallback ||
+  window.requestAnimationFrame ||
+  ((callback) => setTimeout(callback, wait));
+
+//以数组内某些属性为基础将数组分类
+export function groupArray<T, K extends keyof T>(
+  arr: T[],
+  ...keys: K[]
+): T[][] {
+  const groups = new Map<string, T[]>();
+  for (const obj of arr) {
+    const key = keys
+      .filter((k) => obj[k])
+      .map((k) => obj[k])
+      .join(":");
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(obj);
+  }
+  return Array.from(groups.values());
+}
+
+//随机概率通过
+export function randomBoolean(random: number) {
+  return Math.random() <= random;
+}
+
+//获取当前页面url
+export function getLocationHref(): string {
+  if (typeof document === 'undefined' || document.location == null) return '未获取到url'
+  return document.location.href
+}
