@@ -16,7 +16,7 @@ export const isObject = isType('Object')
 export const isArray = isType('Array')
 export const isProcess = isType('process')
 export const isWindow = isType('Window')
-export const isFlase = (val: any) => {
+export const isFalse = (val: any) => {
     return isBoolean(val) && String(val) === 'false'
 }
 
@@ -54,4 +54,12 @@ export function isEmpty(data: any): boolean {
     return (
         (isString(data) && data.trim() === '') || data === undefined || data === null
     )
+}
+
+//判断对象是否超过指定大小(kb)
+export function isObjectOverSizeLimit(object: object, limitSize: number) {
+    const serializedObject = JSON.stringify(object)
+    const sizeBytes = new TextEncoder().encode(serializedObject).length
+    const sizeKB = sizeBytes / 1024
+    return sizeKB > limitSize
 }

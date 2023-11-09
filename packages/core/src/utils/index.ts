@@ -99,39 +99,104 @@ export function deepAssign<T>(target: AnyObj, ...sources: AnyObj[]) {
         );
       } else {
         //否则直接赋值
-        target[key] = source[key]
+        target[key] = source[key];
       }
     }
   });
-  return target as T
+  return target as T;
 }
 
 //判断入参类型
 export function typeofAny(target: any): string {
-  return Object.prototype.toString.call(target).slice(8, -1).toLowerCase()
+  return Object.prototype.toString.call(target).slice(8, -1).toLowerCase();
 }
 
 //判断对象中是否包含该属性
-export function isValidKey(key: string | number | symbol, object: object): key is keyof typeof object {
-  return key in object
+export function isValidKey(
+  key: string | number | symbol,
+  object: object
+): key is keyof typeof object {
+  return key in object;
 }
-
 
 //节流
 export function throttle(func: AnyFun, wait: number, runFirst = false) {
-  let timer: NodeJS.Timeout | null = null
-  let lastArgs: any[]
+  let timer: NodeJS.Timeout | null = null;
+  let lastArgs: any[];
 
-  return function(this: any, ...args: any[]) {
-    lastArgs = args
+  return function (this: any, ...args: any[]) {
+    lastArgs = args;
     if (timer === null) {
       if (runFirst) {
-        func.apply(this, lastArgs)
+        func.apply(this, lastArgs);
       }
       timer = setTimeout(() => {
-        timer = null
-        func.apply(this, lastArgs)
-      }, wait)
+        timer = null;
+        func.apply(this, lastArgs);
+      }, wait);
     }
-  }
+  };
 }
+
+const arrayMap =
+  Array.prototype.map ||
+  function polyfillMap(this: any, fn) {
+    const res = [];
+    for (let i = 0; i < this.length; i++) {
+      res.push(fn(this[i], i, this));
+    }
+    return res;
+  };
+
+//map
+export function useMap(arr: any[], fn: AnyFun) {
+  return arrayMap.call(arr, fn);
+}
+
+//批量执行方法
+export function executeFunctions(funcList: AnyFun[], argsThroughAll: boolean, args: any) {
+  if (funcList.length === 0) return args
+  let res: any = undefined
+  for (let i =0; i< funcList.length; i++) {
+    const func = funcList[i]
+    if (i === 0 || argsThroughAll) res = func(args)
+    else res = func(res)
+  }
+  return res
+}
+
+//通过sendBeacon发送埋点数据
+export function sendByBeacon(url: string, data: any) {
+  return navigator.sendBeacon(url, JSON.stringify(data))
+}
+
+export const sendReaconImageList:any[] = []
+
+//通过image发送埋点数据
+export function sendByImage(url: string, data: string): Promise<void> {
+  return new Promise(resolve => {
+    const img = new Image()
+    img.src = `${url}?v=${encodeURIComponent(JSON.stringify(data))}`
+    sendReaconImageList.push(img)
+    img.onload = () => resolve()
+    img.onerror = () => resolve()
+  })
+}
+
+//通过xml发送埋点数据
+export function sendByXML(url: string, data: string): Promise<void> {
+  return new Promise(resolve => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('post', url)
+    xhr.setRequestHeader('content-type', 'application/json')
+    xhr.send(JSON.stringify(data))
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) resolve()
+    }
+  })
+}
+
+const wait = 17
+
+//异步执行
+export const useNextTick = window.requestIdleCallback || window.requestAnimationFrame || (callback => setTimeout(callback, wait))
