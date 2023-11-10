@@ -1,9 +1,6 @@
 import { isWindow } from './is'
 import { VirtualMonitor } from '../types'
 
-const _global = getGlobal()
-const _support = getGlobalSupport()
-
 //是否是浏览器环境
 export const isBrowserEnv = isWindow(typeof window !== 'undefined' ? window : 0)
 
@@ -23,6 +20,9 @@ export function getGlobalSupport(): VirtualMonitor {
 export function isInit(): boolean {
     return !!_global.__virtualMonitorInit__
 }
+
+const _global = getGlobal()
+const _support = getGlobalSupport()
 
 export { _global, _support }
 

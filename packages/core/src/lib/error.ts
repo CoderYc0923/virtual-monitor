@@ -31,6 +31,7 @@ function initError() {
     eventBus.addEvent({
       type: EVENTTYPES.BEFOREUNLOAD,
       callback: () => {
+        console.log('批量错误捕获回调');
         batchError.sendAllCacheError();
       },
     });
@@ -40,8 +41,10 @@ function initError() {
   eventBus.addEvent({
     type: EVENTTYPES.ERROR,
     callback: (e: ErrorEvent) => {
+      console.log('资源加载错误捕获回调');
       const errorInfo = parseErrorEvent(e);
       if (isIgnoreErrors(errorInfo)) return;
+      console.log('资源加载错误捕获回调：errorInfo', errorInfo);
       emit(errorInfo);
     },
   });
@@ -50,8 +53,10 @@ function initError() {
   eventBus.addEvent({
     type: EVENTTYPES.UNHANDLEDREJECTION,
     callback: (e: PromiseRejectedResult) => {
+      console.log('promise加载错误捕获回调');
       const errorInfo = parseErrorEvent(e);
       if (isIgnoreErrors(errorInfo)) return;
+      console.log('promise加载错误捕获回调:errorInfo',errorInfo);
       emit(errorInfo);
     },
   });
@@ -60,8 +65,10 @@ function initError() {
   eventBus.addEvent({
     type: EVENTTYPES.CONSOLEERROR,
     callback: (e) => {
+      console.log('console.error加载错误捕获回调');
       const errorInfo = parseError(e);
       if (isIgnoreErrors(errorInfo)) return;
+      console.log('console.error加载错误捕获回调: errorInfo', errorInfo, SENDID.CODE);
       emit({ eventId: SENDID.CODE, ...errorInfo });
     },
   });
@@ -206,6 +213,7 @@ function isIgnoreErrors(error: any): boolean {
 
 //发送错误事件信息
 function emit(errorInfo: any, flush = false) {
+  console.log('emit:info', 'enter')
   const info = {
     ...errorInfo,
     eventType: SEDNEVENTTYPES.ERROR,
@@ -213,9 +221,15 @@ function emit(errorInfo: any, flush = false) {
     triggerPageUrl: getLocationHref(),
     targgerTime: getTimestamp(),
   };
+  console.log('emit:info', info)
   options.value.scopeError
     ? batchError.pushCacheErrorA(info)
     : sendData.emit(info, flush);
+}
+
+//主动触发错误上报
+function handleSendError(options = {}, flush = false) {
+  emit(options, flush)
 }
 
 //获取错误录屏数据
@@ -229,4 +243,4 @@ function emit(errorInfo: any, flush = false) {
 //     .flat();
 // }
 
-export { initError };
+export { initError, parseError, handleSendError };

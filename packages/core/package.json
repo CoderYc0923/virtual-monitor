@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/ye_chao111/virtual-monitor",
+    "url": "git+https://gitee.com/ye_chao111/virtual-monitor.git",
     "directory": "packages/core"
   },
   "author": "凡人 <https://gitee.com/ye_chao111>",
@@ -42,7 +42,7 @@
     "@types/ua-parser-js": "^0.7.36"
   },
   "bugs": {
-    "url": "https://gitee.com/ye_chao111/virtual-monitor/issue"
+    "url": "https://gitee.com/ye_chao111/virtual-monitor/issues"
   },
   "homepage": "https://gitee.com/ye_chao111/virtual-monitor#readme",
   "unpkg": "./dist/index.iife.min.js"

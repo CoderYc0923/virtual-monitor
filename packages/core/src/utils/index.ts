@@ -1,5 +1,7 @@
 import { AnyFun, AnyObj } from "../types";
+import { isInit } from "./global";
 import { isRegExp, isArray, isFunction, isNumber } from "./is";
+import { logError } from "./debug";
 
 //添加事件监听器
 export function on(
@@ -266,4 +268,13 @@ export function randomBoolean(random: number) {
 export function getLocationHref(): string {
   if (typeof document === 'undefined' || document.location == null) return '未获取到url'
   return document.location.href
+}
+
+//验证调用向外暴露的方法时virtual-monitor是否初始化了
+export function validateMethods(methodName: string): boolean {
+  if (!isInit()) {
+    logError(`virtual-monitor未初始化，${methodName}调用失败`)
+    return false
+  }
+  return true
 }

@@ -103,7 +103,7 @@ function _vaildateMustFill(options: InitOptions) {
 }
 
 function validateOptionMustFill(target: any, targetName: string): boolean {
-  if (!isEmpty(target)) {
+  if (isEmpty(target)) {
     logError(`"${targetName}"参数为必填参数`);
     return false;
   }

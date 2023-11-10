@@ -11,11 +11,13 @@
     "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
     "build:rollup-watch": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c -w",
     "update": "esno scripts/update.ts",
-    "update:full": "pnpm run update && pnpm run build:types",
+    "update:full": "pnpm run update",
     "clean": "rimraf --glob dist types \"packages/*/dist\"",
     "release": "bumpp --execute=\"npm run release:prepare\" --no-push --no-commit --no-tag",
-    "release:prepare": "npm run build:types && npm run update",
-    "publish": "esno scripts/publish.ts"
+    "release:prepare": "npm run update",
+    "publish": "esno scripts/publish.ts",
+    "test:vue3": "pnpm run -C examples/vue3 start",
+    "example:publish-vue3": "sh scripts/examples/vue3.sh"
   },
   "keywords": [
     "埋点",

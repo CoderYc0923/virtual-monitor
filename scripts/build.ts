@@ -89,9 +89,9 @@ async function build() {
     stdio: 'inherit'
   })
 
-  consola.info('build:types')
+  // consola.info('build:types')
 
-  exec('pnpm run build:types', { stdio: 'inherit' })
+  // exec('pnpm run build:types', { stdio: 'inherit' })
 
   await buildMetaFiles()
 }

@@ -1,11 +1,14 @@
 import type { InitOptions } from './src/types'
 import { _global } from './src/utils/global'
-import { initOptions } from './src/lib/options'
+import { initOptions, options as _options } from './src/lib/options'
 import { initReplace } from './src/lib/replace'
 import { initBase } from './src/lib/base'
 import { initSendData } from './src/lib/sendData'
 import { initLineStatus } from './src/lib/lineStatus'
-import { initError } from './src/lib/error'
+import { initError, parseError } from './src/lib/error'
+import { logError } from './src/utils/debug'
+import { SENDID } from './src/common'
+import * as exportMethods from './src/lib/exportMethods'
 
 function init(options: InitOptions): void {
     if (_global.__virtualMonitorInit__) return
@@ -33,5 +36,12 @@ function initBusiness() {
 
 export {
     init,
-    InitOptions
+    InitOptions,
+    logError,
+    parseError,
+    SENDID,
+    exportMethods,
+    _options as options
 }
+export * from './src/lib/exportMethods'
+export default { init, ...exportMethods, options: _options }

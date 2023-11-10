@@ -1,7 +1,7 @@
 {
   "name": "@virtual-monitor/vue3",
   "version": "1.0.0",
-  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控",
+  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控 - vue3版本",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "jsdelivr": "./dist/index.iife.min.js",
@@ -18,8 +18,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/ye_chao111/virtual-monitor",
-    "directory": "packages/core"
+    "url": "git+https://gitee.com/ye_chao111/virtual-monitor.git",
+    "directory": "packages/vue3"
   },
   "author": "凡人 <https://gitee.com/ye_chao111>",
   "keywords": [
@@ -35,7 +35,7 @@
     "@virtual-monitor/core": "workspace:^"
   },
   "bugs": {
-    "url": "https://gitee.com/ye_chao111/virtual-monitor/issue"
+    "url": "https://gitee.com/ye_chao111/virtual-monitor/issues"
   },
   "homepage": "https://gitee.com/ye_chao111/virtual-monitor#readme",
   "unpkg": "./dist/index.iife.min.js"
