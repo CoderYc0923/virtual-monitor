@@ -148,6 +148,8 @@ export class SendData {
   //发送数据
   private executeSend(url: string, data: any) {
     let sendType = this.setSendType(data);
+    console.log('executeSend', sendType, url, data);
+    
     return new Promise((resolve) => {
       switch (sendType) {
         case 1:

@@ -86,7 +86,7 @@ app.post('/cleanTracingList', (req, res) => {
 })
 app.get('/getAllTracingList', (req, res) => {
   const eventType = req.query.eventType
-  
+    console.log(eventType, allTracingList.length);
   if (eventType) {
     // const data = JSON.parse(JSON.stringify(allTracingList)).reverse()
     const data = JSON.parse(JSON.stringify(allTracingList))
@@ -115,6 +115,7 @@ app.post('/trackweb', async (req, res) => {
       allTracingList.push(...data.eventInfo)
       baseInfo = data.baseInfo
     }
+    console.log('上报的', allTracingList.length);
     res.send({
       code: 200,
       meaage: '上报成功！'

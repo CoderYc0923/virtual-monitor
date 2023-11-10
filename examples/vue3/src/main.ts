@@ -73,8 +73,12 @@ const initOptions = {
     })
     // @ts-ignore
     if (window.getAllTracingList) {
-      // @ts-ignore
-      window.getAllTracingList()
+      
+      //若直接调用获取接口,可能会出现上报接口比获取接口慢的情况而导致获取接口304导致数据不能及时更新
+      setTimeout(() => {
+        // @ts-ignore
+        window.getAllTracingList()
+      },0)
     }
   }
 }
