@@ -3,18 +3,17 @@
     <el-menu
       :default-active="defaultActive"
       router
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+      background-color="#ffffff"
+      text-color="#eee"
+      active-text-color="#000"
     >
       <!-- 遍历菜单 -->
-      <template v-for="item in props.items">
+      <template v-for="(item, index) in props.items">
         <!-- 含有子菜单 -->
         <template v-if="item.children">
           <!-- 第一层 含有子菜单菜单 -->
           <el-sub-menu :index="item.path" :key="item.path">
             <template slot="title">
-              <i :class="item.meta.icon"></i>
               <span slot="title">{{ item.meta.title }}</span>
             </template>
             <menu-list :items="item.children" />
@@ -39,28 +38,29 @@
 
 <script lang="ts">
 export default {
-  name: 'MenuList'
-}
+  name: "MenuList",
+};
 </script>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 interface Props {
-  items: any[]
+  items: any[];
 }
 const props = withDefaults(defineProps<Props>(), {
-  items: () => []
-})
+  items: () => [],
+});
 
-const route = useRoute()
-const defaultActive = computed(() => route.path)
+const route = useRoute();
+const defaultActive = computed(() => route.path);
 </script>
 
 <style lang="scss" scoped>
 .menu-list {
   height: 100vh;
-  background-color: #545c64;
+  background-color: #ffffff;
+  border-right: 1px solid #e4e7ed;
 }
 </style>

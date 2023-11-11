@@ -2,11 +2,11 @@
 
 import { getCookieByName, uuid } from ".";
 import { SESSION_KEY, SURVIVIE_MILLI_SECONDS } from "../common";
-import { getTimestamp } from '../utils'
+import { getTimestamp } from "../utils";
 
 //刷新会话存续期
 function refreshSession() {
-  const id = getCookieByName(SESSION_KEY) || `s_${uuid}`;
+  const id = getCookieByName(SESSION_KEY) || `s_${uuid()}`;
   const expires = new Date(getTimestamp() + SURVIVIE_MILLI_SECONDS);
   document.cookie = `${SESSION_KEY}=${id};path=/;max-age=1800;expires=${expires.toUTCString()}`;
   return id;

@@ -1,31 +1,35 @@
 <template>
   <div class="home">
-    <div class="mb">
-      所有的事件类型:
-      <div v-for="(value, key) in sendEventType">{{ `${key}: ${value}` }}</div>
-    </div>
-    <div>
-      所有的事件ID(还有一些id是随机字符串的):
-      <div v-for="(value, key) in sendEventId">{{ `${key}: ${value}` }}</div>
-    </div>
+    <h1 @click="enter">VirtualMonitor - 测试靶场</h1>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const sendEventType = ref({
-  pv: '路由',
-  error: '错误',
-})
-const sendEventId = ref({
-  page: '页面',
-  resource: '资源',
-  server: '请求',
-  code: '错误id - code',
-  reject: '错误id - reject',
-  'console.error': '错误id - console.error'
-})
+const router = useRouter();
+const enter = () => {
+  router.push("/test-range");
+};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #fdf6e3;
+}
+h1 {
+  cursor: pointer;
+  color: rgba($color: #f7d7b5, $alpha: 0.7);
+
+  &:hover {
+    color: rgba($color: #f7d7b5, $alpha: 1);
+    animation: bounce; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s; /* don't forget to set a duration! */
+  }
+}
+</style>

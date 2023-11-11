@@ -1,25 +1,12 @@
 export const dynamicRouterMap = [
   {
-    path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/views/home/index.vue'),
+    path: "/test-range/err",
+    name: "Err",
+    component: () => import("@/views/err/index.vue"),
     meta: {
-      title: '首页',
-      icon: 'el-icon-setting'
-    }
-  },
-  {
-    path: '/err',
-    name: 'Err',
-    component: () => import('@/views/err/index.vue'),
-    meta: {
-      title: '监控 - 错误',
-      icon: 'el-icon-setting'
-    }
+      title: "监控靶场 - 错误监控",
+      icon: "el-icon-setting",
+    },
   },
   // {
   //   path: '/event',
@@ -66,4 +53,4 @@ export const dynamicRouterMap = [
   //     icon: 'el-icon-setting'
   //   }
   // }
-]
+];

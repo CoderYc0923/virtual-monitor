@@ -1,7 +1,7 @@
 {
   "name": "@virtual-monitor/monorepo",
   "version": "1.0.0",
-  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控",
+  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光]监控",
   "private": true,
   "scripts": {
     "docs": "pnpm run -C docs docs",
@@ -17,6 +17,7 @@
     "release:prepare": "npm run update",
     "publish": "esno scripts/publish.ts",
     "test:vue3": "pnpm run -C examples/vue3 start",
+    "example:publish": "esno scripts/publish-examples.ts",
     "example:publish-vue3": "sh scripts/examples/vue3.sh"
   },
   "keywords": [

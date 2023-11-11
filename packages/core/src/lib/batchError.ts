@@ -105,11 +105,11 @@ class BatchError {
     }
   }
   pushCacheErrorA(errorInfo: any) {
-    this.cacheErrorA.push(errorInfo)
-    this.throttleProxyAddCacheErrorA()
+    this.cacheErrorA.push(errorInfo);
+    this.throttleProxyAddCacheErrorA();
     if (this.cacheErrorA.length >= 50) {
-      this.proxyAddCacheErrorA()
-      this.proxyAddCacheErrorB()
+      this.proxyAddCacheErrorA();
+      this.proxyAddCacheErrorB();
     }
   }
 }
