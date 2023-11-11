@@ -121,14 +121,14 @@ export async function updatePackageJSON() {
     packageJSON.version = version
     packageJSON.description = description || packageJSON.description
     packageJSON.author =
-      author || '凡人 <https://gitee.com/ye_chao111>'
+      author || 'Yc <https://github.com/CoderYc0923>'
     packageJSON.bugs = {
-      url: 'https://gitee.com/ye_chao111/virtual-monitor/issues'
+      url: 'https://github.com/CoderYc0923/virtual-monitor/issues'
     }
-    packageJSON.homepage = 'https://gitee.com/ye_chao111/virtual-monitor#readme'
+    packageJSON.homepage = 'https://github.com/CoderYc0923/virtual-monitor#readme'
     packageJSON.repository = {
       type: 'git',
-      url: 'git+https://gitee.com/ye_chao111/virtual-monitor.git',
+      url: 'git+https://github.com/CoderYc0923/virtual-monitor.git',
       directory: `packages/${name}`
     }
     packageJSON.types = './dist/index.d.ts'

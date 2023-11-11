@@ -15,7 +15,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@gitee.com/ye_chao111/virtual-monitor.git master
+# 如果发布到 https://<USERNAME>.github.io/<REPO>https://github.com/CoderYc0923/virtual-monitor-docs
+git push -f git@github.com/CoderYc0923/virtual-monitor.git master
 
 cd -
