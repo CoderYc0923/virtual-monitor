@@ -15,9 +15,6 @@ hero:
       text: Go Start
       link: /guide/starting
     - theme: alt
-      text: About
-      link: /guide/spotlight
-    - theme: alt
       text: Examples
       link: /guide/use/demo
     - theme: alt
