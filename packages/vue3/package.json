@@ -18,10 +18,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/ye_chao111/virtual-monitor.git",
+    "url": "git+https://github.com/CoderYc0923/virtual-monitor.git",
     "directory": "packages/vue3"
   },
-  "author": "凡人 <https://gitee.com/ye_chao111>",
+  "author": "Yc <https://github.com/CoderYc0923>",
   "keywords": [
     "埋点",
     "性能",
@@ -35,8 +35,8 @@
     "@virtual-monitor/core": "workspace:^"
   },
   "bugs": {
-    "url": "https://gitee.com/ye_chao111/virtual-monitor/issues"
+    "url": "https://github.com/CoderYc0923/virtual-monitor/issues"
   },
-  "homepage": "https://gitee.com/ye_chao111/virtual-monitor#readme",
+  "homepage": "https://github.com/CoderYc0923/virtual-monitor#readme",
   "unpkg": "./dist/index.iife.min.js"
 }

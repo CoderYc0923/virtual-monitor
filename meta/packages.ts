@@ -22,38 +22,38 @@ export const packages: any[] = [
   //   }
   // },
   {
-    name: 'core',
-    display: 'core',
+    name: "core",
+    display: "core",
     description:
-      '前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控',
+      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控",
     keywords: [
-      '埋点',
-      '性能',
-      '异常',
-      '性能采集',
-      '异常采集',
-      '前端埋点',
-      '前端性能采集'
+      "埋点",
+      "性能",
+      "异常",
+      "性能采集",
+      "异常采集",
+      "前端埋点",
+      "前端性能采集",
     ],
-    exampleName: 'core',
-    exampleGitHubPath: 'https://github.com/M-cheng-web/web-tracing-examples-js'
+    exampleName: "core",
+    exampleGitHubPath: "",
   },
   {
-    name: 'vue3',
-    display: 'Vue3',
+    name: "vue3",
+    display: "Vue3",
     description:
-      '前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控 - vue3版本',
+      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控 - vue3版本",
     keywords: [
-      '埋点',
-      '性能',
-      '异常',
-      '性能采集',
-      '异常采集',
-      '前端埋点',
-      '前端性能采集'
+      "埋点",
+      "性能",
+      "异常",
+      "性能采集",
+      "异常采集",
+      "前端埋点",
+      "前端性能采集",
     ],
-    exampleName: 'vue3',
+    exampleName: "vue3",
     exampleGitHubPath:
-      'https://github.com/M-cheng-web/web-tracing-examples-vue3'
-  }
-]
+      "https://github.com/CoderYc0923/virtual-monitor-vue3-example",
+  },
+];
