@@ -9,6 +9,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com/CoderYc0923/virtual-monitor-vue3-example.git master
+git push -f git@github.com:CoderYc0923/virtual-monitor-vue3-example.git master
 
 cd -
