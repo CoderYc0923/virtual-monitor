@@ -25,7 +25,7 @@ export const packages: any[] = [
     name: "core",
     display: "core",
     description:
-      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控",
+      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光]监控 - 核心基线",
     keywords: [
       "埋点",
       "性能",
@@ -42,7 +42,7 @@ export const packages: any[] = [
     name: "vue3",
     display: "Vue3",
     description:
-      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控 - vue3版本",
+      "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光]监控 - vue3",
     keywords: [
       "埋点",
       "性能",

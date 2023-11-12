@@ -1,7 +1,7 @@
 {
   "name": "@virtual-monitor/vue3",
-  "version": "1.0.0",
-  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光、录屏]监控 - vue3版本",
+  "version": "0.2.0",
+  "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光]监控 - vue3",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "jsdelivr": "./dist/index.iife.min.js",

@@ -1,6 +1,6 @@
 {
   "name": "@virtual-monitor/monorepo",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "前端监控插件,支持[行为、性能、异常、请求、资源、路由、曝光]监控",
   "private": true,
   "scripts": {
@@ -24,10 +24,9 @@
     "埋点",
     "性能",
     "异常",
-    "性能采集",
-    "异常采集",
-    "前端埋点",
-    "前端性能采集"
+    "性能埋点",
+    "异常埋点",
+    "前端埋点"
   ],
   "author": "yechao email:1151062047@qq.com",
   "license": "MIT",
