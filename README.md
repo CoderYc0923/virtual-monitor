@@ -7,4 +7,6 @@
 
 ```
 详情请见文档以及示例项目
+文档: https://coderyc0923.github.io/virtual-monitor-docs/
+示例项目：
 ```

@@ -8,7 +8,7 @@ hero:
   name: VirtualMonitor
   text: Make your project completely naked
   image:
-    src: https://gitee.com/ye_chao111/image-store/raw/master/logos/slogin.svg
+    src: https://raw.githubusercontent.com/CoderYc0923/image-bed/images/images/slogin.svg
     alt: VirtualMonitor
   actions:
     - theme: brand
@@ -19,7 +19,7 @@ hero:
       link: /guide/use/demo
     - theme: alt
       text: View on Gitee
-      link: https://gitee.com/ye_chao111/virtual-monitor
+      link: https://github.com/CoderYc0923/virtual-monitor
 
 features:
   - title: Easy to use

@@ -7,16 +7,19 @@ export default defineConfig({
   description: "行为埋点 & 性能采集 & 异常采集 & 请求采集 & 路由采集",
 
   lastUpdated: true,
-  base: "/virtual-monitor",
+  base: "/virtual-monitor-docs/",
   cleanUrls: true,
 
   themeConfig: {
-    logo: "",
+    logo: "https://raw.githubusercontent.com/CoderYc0923/image-bed/images/images/slogin.svg",
 
     nav: [
       { text: "指南", link: "/guide/starting" },
-      { text: "示例", link: "/guide/use/demo" },
-      { text: version, link: "" },
+      {
+        text: "示例",
+        link: "https://github.com/CoderYc0923/virtual-monitor-vue3-example",
+      },
+      { text: `v${version}`, link: "" },
     ],
 
     sidebar: {
@@ -41,7 +44,10 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://gitee.com/ye_chao111/virtual-monitor" },
+      {
+        icon: "github",
+        link: "https://github.com/CoderYc0923/virtual-monitor",
+      },
     ],
   },
   head: [
@@ -49,7 +55,7 @@ export default defineConfig({
       "link",
       {
         rel: "icon",
-        href: "https://github.com/M-cheng-web/image-provider/raw/main/web-tracing/logo.7k1jidnhjr40.svg",
+        href: "https://raw.githubusercontent.com/CoderYc0923/image-bed/images/images/slogin.svg",
       },
     ],
   ],
